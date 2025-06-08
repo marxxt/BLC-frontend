@@ -1,24 +1,25 @@
-// components/sections/ServicesSection.tsx
-import MetricCard from "../ui/MetricCard";
-import SimpleBarChart from "../ui/SimpleBarChart";
+import MetricCard from "@/components/ui/MetricCard";
+import SimpleBarChart from "@/components/ui/SimpleBarChart";
 
 export default function ServicesSection() {
   return (
-    <section className="bg-gray-50 py-20">
+    <section className="bg-gray-50 dark:bg-zinc-900 py-20 transition-colors">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left side - Dashboard mockup */}
           <div className="space-y-6">
             {/* Header card with chart */}
-            <div className="bg-white rounded-2xl border border-gray-200 p-6">
+            <div className="bg-white dark:bg-zinc-800 rounded-2xl border border-gray-200 dark:border-zinc-700 p-6">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h3 className="text-sm font-medium text-gray-500">
+                  <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">
                     Total hours
                   </h3>
-                  <p className="text-3xl font-bold text-gray-900">53.28</p>
+                  <p className="text-3xl font-bold text-gray-900 dark:text-white">
+                    53.28
+                  </p>
                 </div>
-                <div className="text-xs text-gray-400">
+                <div className="text-xs text-gray-400 dark:text-gray-500">
                   <div>Mo. 20</div>
                   <div>Dec 31, 2024</div>
                 </div>
@@ -27,9 +28,9 @@ export default function ServicesSection() {
                 <SimpleBarChart />
               </div>
               <div className="flex justify-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
                   <svg
-                    className="w-8 h-8 text-blue-600"
+                    className="w-8 h-8 text-blue-600 dark:text-blue-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -59,10 +60,10 @@ export default function ServicesSection() {
               <div className="text-sm text-blue-600 font-medium">
                 Service Overview
               </div>
-              <h2 className="text-4xl font-bold text-gray-900">
+              <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
                 Business Credit Solutions
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                 Unlock breakthrough solutions to enhance financial growth and
                 streamline your business workflow.
               </p>
@@ -70,86 +71,48 @@ export default function ServicesSection() {
 
             {/* Feature list */}
             <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-blue-600 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg
-                    className="w-4 h-4 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
+              {[
+                {
+                  title:
+                    "Identify business credit opportunities with optimal business credit",
+                  desc: "Leverage cutting-edge technology to boost your credit score and unlock new financing opportunities.",
+                },
+                {
+                  title:
+                    "Receive a proposal through the entire business workflow",
+                  desc: "Streamline your entire business process with our comprehensive workflow management.",
+                },
+                {
+                  title: "Optimize real-time landing possibilities",
+                  desc: "Investment with our investment strategies.",
+                },
+              ].map((feature, i) => (
+                <div className="flex items-start space-x-3" key={i}>
+                  <div className="w-6 h-6 bg-blue-600 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-white">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">
+                      {feature.desc}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">
-                    Identify business credit opportunities with optimal business
-                    credit
-                  </h3>
-                  <p className="text-gray-600 text-sm mt-1">
-                    Leverage cutting-edge technology to boost your credit score
-                    and unlock new financing opportunities.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-blue-600 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg
-                    className="w-4 h-4 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">
-                    Receive a proposal through the entire business workflow
-                  </h3>
-                  <p className="text-gray-600 text-sm mt-1">
-                    Streamline your entire business process with our
-                    comprehensive workflow management.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-blue-600 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg
-                    className="w-4 h-4 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">
-                    Optimize real-time landing possibilities
-                  </h3>
-                  <p className="text-gray-600 text-sm mt-1">
-                    Investment with our investment strategies.
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

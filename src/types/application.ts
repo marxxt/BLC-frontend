@@ -90,17 +90,19 @@ export interface OwnershipInfo {
   }>;
 }
 
+export interface LegalQuestions {
+  outstandingJudgments: boolean;
+  bankruptcyHistory: boolean;
+  pendingLawsuits: boolean;
+}
+
 export interface ApplicationData {
   applicantInfo: ApplicantInfo;
   businessInfo: BusinessInfo;
   projectInfo?: ProjectInfo;
   financingInfo: FinancingInfo;
   ownershipInfo: OwnershipInfo;
-  legalQuestions: {
-    outstandingJudgments: boolean;
-    bankruptcyHistory: boolean;
-    pendingLawsuits: boolean;
-  };
+  legalQuestions: LegalQuestions;
   documents: {
     uploaded: string[];
     required: string[];

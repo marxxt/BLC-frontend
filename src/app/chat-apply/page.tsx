@@ -22,19 +22,21 @@ export default function ChatApplyPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
-          {!showPdfReview ? (
-            <ChatFlow onComplete={handleApplicationComplete} />
-          ) : (
-            <PdfReview
-              applicationData={applicationData!}
-              onStartOver={handleStartOver}
-            />
-          )}
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 dark:from-slate-900 dark:via-purple-900 dark:to-slate-900">
+      {!showPdfReview ? (
+        <ChatFlow onComplete={handleApplicationComplete} />
+      ) : (
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+          <div className="container mx-auto px-4 py-8">
+            <div className="max-w-4xl mx-auto">
+              <PdfReview
+                applicationData={applicationData!}
+                onStartOver={handleStartOver}
+              />
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

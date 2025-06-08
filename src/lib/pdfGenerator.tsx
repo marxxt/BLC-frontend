@@ -81,16 +81,19 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     flexDirection: "row",
     alignItems: "flex-start",
+    fontSize: 12,
   },
   label: {
     fontWeight: "bold",
     color: "#555",
     width: 160,
     marginRight: 5,
+    fontSize: 12,
   },
   value: {
     flexGrow: 1,
     flexShrink: 1,
+    fontSize: 12,
   },
   signatureSection: {
     marginTop: 40,
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
   signatureLine: {
     borderBottomWidth: 1,
     borderBottomColor: "#000",
-    width: "40%",
+    width: 200, // Fixed width instead of percentage
     marginTop: 20,
     paddingBottom: 2,
   },
@@ -113,9 +116,10 @@ const styles = StyleSheet.create({
   },
   signatureRow: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     width: "100%",
     marginBottom: 20,
+    gap: 80, // Add space between signature and date
   },
   printName: {
     marginTop: 20,
@@ -137,7 +141,7 @@ const ApplicationPdfDocument = ({
   <Document>
     <Page size="LETTER" style={styles.page}>
       <View style={styles.header}>
-        <Image style={styles.logo} src="/images/logos/dark_logo.png" />
+        <Image style={styles.logo} src="/images/logos/light_logo.png" />
         <Text style={styles.h1}>Blue Ledger Capital</Text>
         <Text style={styles.h2}>Loan Application Summary</Text>
         <Text style={styles.p}>
@@ -259,7 +263,7 @@ const ApplicationPdfDocument = ({
         <View style={styles.field}>
           <Text style={styles.label}>Annual Sales:</Text>{" "}
           <Text style={styles.value}>
-            $$
+            $
             {applicationData.businessInfo?.annualSales?.toLocaleString() ||
               "N/A"}
           </Text>
@@ -267,7 +271,7 @@ const ApplicationPdfDocument = ({
         <View style={styles.field}>
           <Text style={styles.label}>Annual Profit:</Text>{" "}
           <Text style={styles.value}>
-            $$
+            $
             {applicationData.businessInfo?.annualProfit?.toLocaleString() ||
               "N/A"}
           </Text>
@@ -349,7 +353,7 @@ const ApplicationPdfDocument = ({
           <View style={styles.field}>
             <Text style={styles.label}>Total Costs:</Text>{" "}
             <Text style={styles.value}>
-              $$
+              $
               {applicationData.projectInfo.totalCosts?.toLocaleString() ||
                 "N/A"}
             </Text>
@@ -374,7 +378,7 @@ const ApplicationPdfDocument = ({
         <View style={styles.field}>
           <Text style={styles.label}>Requested Amount:</Text>{" "}
           <Text style={styles.value}>
-            $$
+            $
             {applicationData.financingInfo?.requestedAmount?.toLocaleString() ||
               "N/A"}
           </Text>
@@ -407,7 +411,7 @@ const ApplicationPdfDocument = ({
                 <View style={styles.field}>
                   <Text style={styles.label}>Balance:</Text>{" "}
                   <Text style={styles.value}>
-                    $$
+                    $
                     {applicationData.financingInfo.existingAdvance.balance?.toLocaleString() ||
                       "N/A"}
                   </Text>

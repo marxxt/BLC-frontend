@@ -4,6 +4,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -75,6 +76,7 @@ export default function Navbar() {
               Get Started
             </Link>
           </div>
+          <div className="flex items-center"><ThemeToggle /></div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -141,6 +143,7 @@ export default function Navbar() {
                   Get Started
                 </Link>
               </div>
+              <div className="px-4 pt-2"><ThemeToggle /></div>
             </div>
           </div>
         )}
