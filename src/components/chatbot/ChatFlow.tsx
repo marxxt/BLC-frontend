@@ -8,7 +8,7 @@ import HelenAvatar from "./HelenAvatar";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { generateApplicationId } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-
+import { useChatbotStore } from "@/store";
 import useSound from "use-sound";
 
 interface Message {
@@ -36,11 +36,18 @@ interface ChatResponse {
 
 export default function ChatFlow({ onComplete }: ChatFlowProps) {
   const router = useRouter();
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [currentStep, setCurrentStep] = useState<string>("loan_type");
-  const [applicationData, setApplicationData] = useState<
-    Partial<ApplicationData>
-  >({});
+
+  // Zustand store for chatbot state
+  const messages = useChatbotStore((state: any) => state.messages);
+  const setMessages = useChatbotStore((state: any) => state.setMessages);
+  const addMessageToStore = useChatbotStore((state: any) => state.addMessage);
+  const currentStep = useChatbotStore((state: any) => state.currentStep);
+  const setCurrentStep = useChatbotStore((state: any) => state.setCurrentStep);
+  const applicationData = useChatbotStore((state: any) => state.applicationData);
+  const setApplicationData = useChatbotStore((state: any) => state.setApplicationData);
+  const updateApplicationDataStore = useChatbotStore((state: any) => state.updateApplicationData);
+
+  // Local state for UI-only concerns
   const [isTyping, setIsTyping] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [isSoundEnabled, setIsSoundEnabled] = useState(false);
@@ -74,6 +81,7 @@ export default function ChatFlow({ onComplete }: ChatFlowProps) {
 
   const generateId = () => Math.random().toString(36).substr(2, 9);
 
+  // Replace local addMessage with store action
   const addMessage = (type: "bot" | "user", content: string) => {
     const message: Message = {
       id: generateId(),
@@ -81,7 +89,7 @@ export default function ChatFlow({ onComplete }: ChatFlowProps) {
       content,
       timestamp: new Date(),
     };
-    setMessages((prev: Message[]) => [...prev, message]);
+    addMessageToStore(message);
   };
 
   const addBotMessage = (content: string, delay = 1500) => {
@@ -184,6 +192,7 @@ export default function ChatFlow({ onComplete }: ChatFlowProps) {
     return response.json();
   };
 
+  // Replace local updateApplicationData with store action
   const updateApplicationData = (extractedData: any) => {
     if (!extractedData) return;
 
@@ -191,8 +200,11 @@ export default function ChatFlow({ onComplete }: ChatFlowProps) {
 
     console.log("Updating application data:", { field, value });
 
-    setApplicationData((prev) => {
+    updateApplicationDataStore((prev: Partial<ApplicationData>) => {
       const updated = { ...prev };
+
+      // ... (rest of the update logic remains unchanged)
+      // (Copy the entire switch/case and nested object logic here)
 
       // Ensure nested objects are initialized
       if (!updated.applicantInfo) {
@@ -588,7 +600,7 @@ export default function ChatFlow({ onComplete }: ChatFlowProps) {
           }
 
           setTimeout(() => {
-            setApplicationData((currentData) => {
+            setApplicationData((currentData: Partial<ApplicationData>) => {
               if (checkIfApplicationComplete(currentData)) {
                 setTimeout(() => {
                   addBotMessage(

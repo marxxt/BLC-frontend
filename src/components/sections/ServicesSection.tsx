@@ -2,6 +2,22 @@ import MetricCard from "@/components/ui/MetricCard";
 import SimpleBarChart from "@/components/ui/SimpleBarChart";
 
 export default function ServicesSection() {
+  const serviceFeatures = [
+    {
+      title:
+        "Identify business credit opportunities with optimal business credit",
+      desc: "Leverage cutting-edge technology to boost your credit score and unlock new financing opportunities.",
+    },
+    {
+      title: "Receive a proposal through the entire business workflow",
+      desc: "Streamline your entire business process with our comprehensive workflow management.",
+    },
+    {
+      title: "Optimize real-time landing possibilities",
+      desc: "Investment with our investment strategies.",
+    },
+  ];
+
   return (
     <section className="bg-gray-50 dark:bg-zinc-900 py-20 transition-colors">
       <div className="max-w-7xl mx-auto px-6">
@@ -71,22 +87,7 @@ export default function ServicesSection() {
 
             {/* Feature list */}
             <div className="space-y-4">
-              {[
-                {
-                  title:
-                    "Identify business credit opportunities with optimal business credit",
-                  desc: "Leverage cutting-edge technology to boost your credit score and unlock new financing opportunities.",
-                },
-                {
-                  title:
-                    "Receive a proposal through the entire business workflow",
-                  desc: "Streamline your entire business process with our comprehensive workflow management.",
-                },
-                {
-                  title: "Optimize real-time landing possibilities",
-                  desc: "Investment with our investment strategies.",
-                },
-              ].map((feature, i) => (
+              {serviceFeatures.map((feature, i) => (
                 <div className="flex items-start space-x-3" key={i}>
                   <div className="w-6 h-6 bg-blue-600 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
                     <svg
